@@ -1,0 +1,11 @@
+{
+    "require": {
+        "php": "^8.0",
+        "ext-pdo_sqlite": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blog\\": "src/"
+        }
+    }
+}
