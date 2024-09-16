@@ -1,9 +1,9 @@
 project dir needs to be located in /var/www/html/ for apache to serve <br/>
 
-
+initial setup <br/>
 1. Clone repo <br/>
 2. Install Apache if not already <br/>
-3. Start and enable Apache  <br/>
+3. Start and enable Apache ex. linux fedora: sudo systemctl start httpd <br/>
 4. Move cloned repo for Apache to serve: “sudo mv /path/to/the/project /var/www/html/” <br/>
 5. Run “composer install” to get project dependencies <br/>
 6. Run project: http://localhost/blog/ <br/>
@@ -21,3 +21,7 @@ iv. if still not working, ensure that context of files in project directory are 
 <br/>   sudo chmod -R 755 /var/www/html/blog/data
 <br/> ii. sudo chcon -R -t httpd_sys_rw_content_t /var/www/html/blog/data
 
+<br/> 
+Usual usage <br/> 
+1. Ensure Apache is started, ex. linux fedora: sudo systemctl start httpd <br/> 
+2. Go to: http://localhost/blog/  <br/> 

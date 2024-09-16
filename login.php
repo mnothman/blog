@@ -56,8 +56,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="password" name="password" placeholder="Password" required><br>
             <button type="submit">Login</button>
         </form>
-    </div>
 
+        <br>
+        <form action="index.php" method="get">
+            <button type="submit">Back to Home</button>
+        </form>
+    </div>
+        
     <?php include 'includes/footer.php'; ?>
 </body>
 </html>
