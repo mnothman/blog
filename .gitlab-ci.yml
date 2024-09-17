@@ -1,0 +1,27 @@
+stages:
+  - setup
+  - test
+  - deploy
+
+setup:
+  stage: setup
+  script:
+    - sudo chown -R apache:apache /var/www/html/blog/data
+    - sudo chmod -R 755 /var/www/html/blog/data
+  tags:
+    - your-runner-tag
+
+test:
+  stage: test
+  script:
+    - phpunit --configuration phpunit.xml
+  tags:
+    - your-runner-tag
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying to production..."
+    - sudo systemctl restart httpd
+  tags:
+    - your-runner-tag
