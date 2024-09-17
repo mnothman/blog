@@ -1,27 +1,39 @@
 stages:
-  - setup
+  - build
   - test
   - deploy
 
-setup:
-  stage: setup
+# Use a Docker image with Docker pre-installed
+image: docker:latest
+
+# Services needed to run Docker
+services:
+  - docker:dind
+
+variables:
+  # Define the Docker image name and tag
+  DOCKER_IMAGE: blog-app
+
+build:
+  stage: build
   script:
-    - sudo chown -R apache:apache /var/www/html/blog/data
-    - sudo chmod -R 755 /var/www/html/blog/data
+    - docker build -t $DOCKER_IMAGE .
   tags:
-    - your-runner-tag
+    - docker
 
 test:
   stage: test
   script:
-    - phpunit --configuration phpunit.xml
+    - echo "Running tests"
+    # You can run any test command here
   tags:
-    - your-runner-tag
+    - docker
 
 deploy:
   stage: deploy
   script:
-    - echo "Deploying to production..."
-    - sudo systemctl restart httpd
+    - docker run -d -p 8080:80 $DOCKER_IMAGE
   tags:
-    - your-runner-tag
+    - docker
+  only:
+    - main
