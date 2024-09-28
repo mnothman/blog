@@ -1,28 +1,35 @@
 <?php
-require 'includes/db.php'; // Ensure the database connection is included
+require 'includes/db.php';
 
-// Debugging: Output the post_id and check if it's valid
-echo "Post ID: $post_id<br>";
+// Debugging
+// echo "Post ID1: $post_id<br>";
 
-// Check if 'id' is provided in the URL and is numeric
+// check 'id' is provided in the URL and is numeric
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "Invalid post ID.";
     exit;
 }
 
-// Get the post ID from URL
+// post ID from URL 
 $post_id = intval($_GET['id']);
+
+// Debugging
+echo "Post ID2: $post_id<br>";
 
 try {
     // Prepare SQL statement to get the post
     $stmt = $pdo->prepare("SELECT title, content, created_at FROM posts WHERE id = ?");
     $stmt->execute([$post_id]);
 
-    if ($stmt->rowCount() > 0) {
-        $post = $stmt->fetch();
-        $title = $post['title'];
-        $content = $post['content'];
-        $created_at = $post['created_at'];
+    // Fetch the post data
+    $post = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    print_r($post); // Debugging: Output the post data
+
+    // Assign variables from fetched data
+    if (!empty($post)) {
+        $title = $post[0]['title'];
+        $content = $post[0]['content'];
+        $created_at = $post[0]['created_at'];
     } else {
         echo "Post not found.";
         exit;
@@ -32,6 +39,7 @@ try {
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
