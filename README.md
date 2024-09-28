@@ -25,3 +25,9 @@ iv. if still not working, ensure that context of files in project directory are 
 Usual usage <br/> 
 1. Ensure Apache is started, ex. linux fedora: sudo systemctl start httpd <br/> 
 2. Go to: http://localhost/blog/  <br/> 
+
+
+ <br/> Transfer permissions manually with transfer_permissions.sh and reclaim_permissions.sh. 
+<br/> Make executable: chmod +x reclaim_permissions.sh run with: ./reclaim_permissions.sh AND chmod +x transfer_permissions.sh & run with: ./transfer_permissions.sh
+<br/> If git is tracking permission changes use this to stop it: git config core.fileMode false
+
