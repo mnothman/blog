@@ -2,9 +2,15 @@
 
 session_start();
 
+
 // require 'vendor/autoload.php';
 require 'includes/db.php';
 require 'includes/functions.php';
+
+// Debugging
+// echo "Session user_id: " . (isset($_SESSION['user_id']) ? $_SESSION['user_id'] : "No user logged in") . "<br>";
+// echo "Session username: " . (isset($_SESSION['username']) ? $_SESSION['username'] : "No username") . "<br>";
+
 
 // fetch all the posts from db
 $sql = "SELECT posts.id, posts.title, posts.content, posts.created_at, users.username 
